@@ -1,6 +1,6 @@
 #!/bin/sh
-apt-get update
-apt-get install strongswan strongswan-plugin-xauth-generic strongswan-plugin-eap-mschapv2 strongswan-plugin-eap-md5 -y
+yum -y update
+yum -y install strongswan strongswan-plugin-xauth-generic strongswan-plugin-eap-mschapv2 strongswan-plugin-eap-md5 -y
 #attention! domainName must be your server's domain name
 ipsec pki --gen --outform pem > caKey.pem
 ipsec pki --self --in caKey.pem --dn "C=CH, O=strongSwan, CN=strongSwan CA" --ca --outform pem > caCert.pem
@@ -88,9 +88,9 @@ EOF
 
 cat > /etc/ipsec.secrets<<EOF
 : RSA serverKey.pem
-: PSK "YourPSKHere"
-accountNameHere : EAP "passwdForAccountHere"
-accountNameHere : XAUTH "passwdForAccountHere"
+: PSK "ljf132546987"
+accountNameHere : EAP "ljf132546987"
+accountNameHere : XAUTH "ljf132546987"
 EOF
 
 iptables -A INPUT -p esp -j ACCEPT
